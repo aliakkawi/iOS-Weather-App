@@ -45,11 +45,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var theMinTempArray = [Double]()
     var theWeatherMainArray = [String]()
     var theDescriptionArray = [String]()
+    var theDayArray = [String]()
+    
     
     var theSubMaxTempArray = [Double]()
     var theSubMinTempArray = [Double]()
     var theSubWeatherMainArray = [String]()
     var theSubDescriptionArray = [String]()
+    var theSubDayArray = [String]()
     
     
     
@@ -86,6 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         cell.maxTemperatureLabel.text = "\(theSubMaxTempArray[indexPath.row])°"
         cell.minTemperatureLabel.text = "\(theSubMinTempArray[indexPath.row])°"
         cell.weatherDescriptionLabel.text = theSubDescriptionArray[indexPath.row]
+        cell.dayLabel.text = theSubDayArray[indexPath.row]
         
         let desc = theSubWeatherMainArray[indexPath.row]
         // update the mini imageview.
@@ -153,12 +157,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         self.theMaxTempArray.removeAll(keepingCapacity: true)
         self.theDescriptionArray.removeAll(keepingCapacity: true)
         self.theWeatherMainArray.removeAll(keepingCapacity: true)
-        
+        self.theDayArray.removeAll(keepingCapacity: true)
         
         self.theSubMinTempArray.removeAll(keepingCapacity: true)
         self.theSubMaxTempArray.removeAll(keepingCapacity: true)
         self.theSubDescriptionArray.removeAll(keepingCapacity: true)
         self.theSubWeatherMainArray.removeAll(keepingCapacity: true)
+        self.theSubDayArray.removeAll(keepingCapacity: true)
         
         city.downloadPokemonDetails{
             print("We are here")
@@ -169,6 +174,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             self.theMaxTempArray = city._maxArray
             self.theDescriptionArray = city._weatherDescriptionArray
             self.theWeatherMainArray = city._weatherShortDescriptionArray
+            self.theDayArray = city._date
             
             
             
@@ -181,6 +187,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                 self.theSubMinTempArray.append(self.theMinTempArray[i])
                 self.theSubDescriptionArray.append(self.theDescriptionArray[i])
                 self.theSubWeatherMainArray.append(self.theWeatherMainArray[i])
+                self.theSubDayArray.append(self.theDayArray[i])
                 
             }
             
@@ -193,6 +200,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             self.todaysLowTemp = city._minArray.first!
             self.todaysShortDescription = city._weatherShortDescriptionArray.first!
             self.todaysFullDescription = city._weatherDescriptionArray.first!
+            self.dateLabel.text = city._date.first!
             
             
             // update todays ui.
