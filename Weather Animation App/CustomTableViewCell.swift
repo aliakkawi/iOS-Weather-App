@@ -9,7 +9,19 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var eatherImageView: UIImageView!
+    
+    @IBOutlet weak var dayLabel: UILabel!
 
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
+    
+    @IBOutlet weak var minTemperatureLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
